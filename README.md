@@ -9,7 +9,7 @@
 ## 👥 Project Team Members (Slide 2)
 1. **DB Dhanvanth** — Register No: `RA2511026050032`
 2. **MV Mudapalli Vineel Kumar** — Register No: `RA2511026050057`
-3. **KS Kabish Sridar** — Register No: `RA2511026050018`
+3. **Kabish Sridar** — Register No: `RA2511026050018`
 
 ---
 
