@@ -1,4 +1,4 @@
-# Hospital Doctor Appointment System
+# Doctor Appointment System
 
 **Institution**: SRM TRICHY • Department of Computer Science & Engineering (AI & ML)  
 **Course**: Semester 3 - Advanced Programming Practice (APP)  
@@ -16,7 +16,7 @@
 ## 📋 Problem Statement & Abstract (Slides 3 & 4)
 Patients often face difficulties booking doctor appointments due to manual scheduling, long waiting times, repeated phone calls, and a lack of clear information regarding doctor availability.
 
-The **Hospital Doctor Appointment System** provides a smart, reliable, and organized solution to:
+The **Doctor Appointment System** provides a smart, reliable, and organized solution to:
 - Browse doctor specialties (**Cardiology**, **Orthopedics**, **Pediatrics**, **General Medicine**, **Neurology**).
 - Check real-time slot availability (e.g., `10:30 AM`, `11:15 AM`, `12:00 PM`).
 - Prevent double bookings and scheduling conflicts.

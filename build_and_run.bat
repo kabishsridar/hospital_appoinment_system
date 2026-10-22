@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 
 echo ======================================================================
-echo    SRM TRICHY  -  CSE AIML A  -  HOSPITAL DOCTOR APPOINTMENT SYSTEM
+echo    SRM TRICHY  -  CSE AIML A  -  DOCTOR APPOINTMENT SYSTEM
 echo ======================================================================
 echo.
 echo [1/3] Creating output directory bin/...
@@ -19,7 +19,7 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b %ERRORLEVEL%
 )
 
-echo [3/3] Launching Hospital Doctor Appointment System (GUI)...
+echo [3/3] Launching Doctor Appointment System (GUI)...
 echo.
 java -cp bin hospital.Main
 

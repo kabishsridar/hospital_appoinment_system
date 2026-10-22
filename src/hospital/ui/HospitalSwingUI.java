@@ -49,7 +49,7 @@ public class HospitalSwingUI extends JFrame {
     private static final Color SUCCESS_GREEN = new Color(16, 185, 129);
 
     public HospitalSwingUI(HospitalService service) {
-        super("Hospital Doctor Appointment System - SRM Trichy (CSE AIML A)");
+        super("Doctor Appointment System - SRM Trichy (CSE AIML A)");
         this.service = service;
 
         initUI();
@@ -98,7 +98,7 @@ public class HospitalSwingUI extends JFrame {
         subTitle.setFont(new Font("Segoe UI", Font.BOLD, 12));
         subTitle.setForeground(new Color(173, 206, 255));
 
-        JLabel title = new JLabel("Hospital Doctor Appointment System");
+        JLabel title = new JLabel("Doctor Appointment System");
         title.setFont(new Font("Segoe UI", Font.BOLD, 22));
         title.setForeground(Color.WHITE);
 
@@ -392,7 +392,7 @@ public class HospitalSwingUI extends JFrame {
         inst.setFont(new Font("Segoe UI", Font.BOLD, 13));
         inst.setForeground(new Color(173, 206, 255));
 
-        JLabel title = new JLabel("Hospital Doctor Appointment System");
+        JLabel title = new JLabel("Doctor Appointment System");
         title.setFont(new Font("Segoe UI", Font.BOLD, 22));
         title.setForeground(Color.WHITE);
 

@@ -79,7 +79,7 @@ public class ConsoleUI {
 
     private void printHeader() {
         System.out.println("\n==========================================================================");
-        System.out.println("       SRM TRICHY  •  CSE AIML A  •  HOSPITAL DOCTOR APPOINTMENT SYSTEM    ");
+        System.out.println("          SRM TRICHY  •  CSE AIML A  •  DOCTOR APPOINTMENT SYSTEM         ");
         System.out.println("          A Smart and Efficient Solution for Doctor Appointment Booking   ");
         System.out.println("==========================================================================");
     }
@@ -222,7 +222,7 @@ public class ConsoleUI {
         System.out.println("==========================================================================");
         System.out.println("SRM TRICHY • DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING (AI & ML)");
         System.out.println("Class: CSE AIML A");
-        System.out.println("Project: Hospital Doctor Appointment System");
+        System.out.println("Project: Doctor Appointment System");
         System.out.println("--------------------------------------------------------------------------");
         System.out.println("TEAM MEMBERS:");
         System.out.println("  1. DB Dhanvanth             | Reg No: RA2511026050032");

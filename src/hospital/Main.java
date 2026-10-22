@@ -11,7 +11,7 @@ import java.awt.*;
 import java.io.File;
 
 /**
- * Main application launcher for the SRM Trichy Hospital Doctor Appointment System.
+ * Main application launcher for the SRM Trichy Doctor Appointment System.
  */
 public class Main {
     public static void main(String[] args) {
