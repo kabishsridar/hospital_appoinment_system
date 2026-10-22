@@ -1,0 +1,2 @@
+#aptId,patId,patName,patPhone,patEmail,patAge,patGender,docId,slotId,bookedAtIso,status
+APT-1001,PAT-4895,sample,919548764958,19,19,Male,DOC-104,SLOT-G2,2026-10-22T19:59:04.902424700,CONFIRMED
