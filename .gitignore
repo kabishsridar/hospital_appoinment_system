@@ -1,0 +1,10 @@
+# Dependencies & Node modules
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Java bytecode
+bin/
+

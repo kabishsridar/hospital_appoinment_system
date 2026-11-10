@@ -1,0 +1,25 @@
+{
+  "name": "app_project",
+  "version": "1.0.0",
+  "description": "**Institution**: SRM TRICHY • Department of Computer Science & Engineering (AI & ML)   **Course**: Semester 3 - Advanced Programming Practice (APP)   **Class**: CSE AIML A",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kabishsridar/app_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kabishsridar/app_project/issues"
+  },
+  "homepage": "https://github.com/kabishsridar/app_project#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.2"
+  }
+}

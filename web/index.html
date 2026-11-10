@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Appointment System | SRM TRICHY CSE AIML</title>
+
+  <!-- Local Bootstrap 5 CSS & Icons with CDN Fallback -->
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';">
+  <link rel="stylesheet" href="vendor/bootstrap-icons/bootstrap-icons.min.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css';">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-2.5 shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 text-dark" href="#hero">
+        <div class="brand-icon">
+          <i class="bi bi-heart-pulse-fill fs-5"></i>
+        </div>
+        <div>
+          <span class="d-block fw-bold fs-5 text-dark lh-sm">CarePoint Hospital</span>
+          <span class="d-block text-muted small fw-normal" style="font-size: 0.72rem;">Doctor Appointment & Queue System</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2 mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link text-secondary fw-medium px-3" href="#doctors-section">
+              <i class="bi bi-people-fill me-1"></i> Specialists
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary fw-medium px-3" href="#booking-section">
+              <i class="bi bi-calendar2-check-fill me-1"></i> Book Slot
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary fw-medium px-3" href="#queue-section">
+              <i class="bi bi-card-checklist me-1"></i> Live Queue
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary fw-medium px-3" href="#about-section">
+              <i class="bi bi-info-circle-fill me-1"></i> Project Info
+            </a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <span id="serverSyncBadge" class="badge bg-light text-secondary border">Checking Sync...</span>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a href="#booking-section" class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm">
+              <i class="bi bi-plus-circle me-1"></i> Book Now
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="hero" class="hero-section">
+    <div class="container position-relative" style="z-index: 1;">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="hero-badge mb-3">
+            <i class="bi bi-mortarboard-fill text-info"></i>
+            <span>SRM TRICHY • Department of CSE (AI & ML) • Sem 3 APP Project</span>
+          </div>
+          <h1 class="display-5 fw-bolder mb-3 text-white lh-sm">
+            Smart & Seamless <br>
+            <span class="text-info">Doctor Appointment System</span>
+          </h1>
+          <p class="lead text-light opacity-90 mb-4" style="max-width: 620px; font-size: 1.1rem;">
+            Instant real-time slot booking across Cardiology, Orthopedics, Pediatrics, General Medicine, and Neurology.
+            Say goodbye to waiting lines with automated digital tokens, conflict checks, and live queue tracking.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#booking-section" class="btn btn-info btn-lg rounded-pill px-4 fw-semibold text-dark shadow">
+              <i class="bi bi-calendar-plus me-1"></i> Instant Booking
+            </a>
+            <a href="#doctors-section" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-semibold">
+              <i class="bi bi-person-badge me-1"></i> View Doctors
+            </a>
+            <a href="#queue-section" class="btn btn-link text-light text-decoration-none d-inline-flex align-items-center">
+              <span>View Live Queue</span> <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="stat-card">
+                <div class="stat-icon text-info mb-2">
+                  <i class="bi bi-hospital"></i>
+                </div>
+                <h3 class="fw-bold mb-0">5</h3>
+                <small class="text-light opacity-75">Specialty Depts</small>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card">
+                <div class="stat-icon text-warning mb-2">
+                  <i class="bi bi-person-check-fill"></i>
+                </div>
+                <h3 class="fw-bold mb-0">5</h3>
+                <small class="text-light opacity-75">Senior Specialists</small>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card">
+                <div class="stat-icon text-success mb-2">
+                  <i class="bi bi-clock-history"></i>
+                </div>
+                <h3 class="fw-bold mb-0" id="statActiveAppointments">0</h3>
+                <small class="text-light opacity-75">Active Bookings</small>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-card">
+                <div class="stat-icon text-primary mb-2">
+                  <i class="bi bi-wallet2"></i>
+                </div>
+                <h3 class="fw-bold mb-0" id="statRevenue">₹0</h3>
+                <small class="text-light opacity-75">Consultation Total</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container my-5">
+
+    <!-- Section 1: Doctor Directory -->
+    <section id="doctors-section" class="mb-5 pt-3">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div>
+          <span class="text-primary fw-semibold small text-uppercase letter-spacing">Specialist Directory</span>
+          <h2 class="fw-bold text-dark mb-1">Our Medical Specialists & Availability</h2>
+          <p class="text-muted small mb-0">Select a department filter or browse our verified resident specialists.</p>
+        </div>
+
+        <!-- Department Filter Tabs -->
+        <div class="d-flex flex-wrap gap-1.5">
+          <button class="btn btn-dept-filter active" data-dept="ALL">All Specialties</button>
+          <button class="btn btn-dept-filter" data-dept="Cardiology">Cardiology</button>
+          <button class="btn btn-dept-filter" data-dept="Orthopedics">Orthopedics</button>
+          <button class="btn btn-dept-filter" data-dept="Pediatrics">Pediatrics</button>
+          <button class="btn btn-dept-filter" data-dept="General Medicine">General Med</button>
+          <button class="btn btn-dept-filter" data-dept="Neurology">Neurology</button>
+        </div>
+      </div>
+
+      <!-- Doctor Cards Dynamic Grid -->
+      <div class="row" id="doctorCardsContainer">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Appointment Booking Engine -->
+    <section id="booking-section" class="mb-5 pt-4">
+      <div class="bg-white rounded-4 border shadow-sm p-4 p-lg-5">
+        <div class="row g-5">
+          
+          <!-- Booking Left: Doctor & Slot Selection -->
+          <div class="col-lg-6 border-end-lg pe-lg-5">
+            <div class="d-inline-flex align-items-center gap-2 text-primary fw-semibold small text-uppercase mb-2">
+              <i class="bi bi-calendar-event"></i> Step 1 & 2
+            </div>
+            <h3 class="fw-bold text-dark mb-3">Choose Specialist & Time Slot</h3>
+            <p class="text-muted small mb-4">
+              Pick your preferred doctor and click an available slot. Booked slots are synchronized automatically in real time with our CSV database.
+            </p>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark">Select Doctor</label>
+              <select id="bookDoctorSelect" class="form-select form-select-lg border-2 shadow-none">
+                <!-- Populated dynamically -->
+              </select>
+              <div id="slotHelperText" class="form-text mt-1 text-primary fw-medium small"></div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold text-dark d-flex justify-content-between align-items-center">
+                <span>Available Consultation Slots</span>
+                <span class="badge bg-light text-muted fw-normal border">Click slot to select</span>
+              </label>
+              <div id="slotPickerContainer" class="p-3 bg-light rounded-3 border">
+                <span class="text-muted small">Please select a doctor above.</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-info-subtle text-info-emphasis rounded-3 border border-info-subtle small">
+              <i class="bi bi-shield-check fs-5 me-2 align-middle"></i>
+              <strong>Conflict Prevention Active:</strong> Two patients cannot be scheduled into the same doctor slot at the same time.
+            </div>
+          </div>
+
+          <!-- Booking Right: Patient Demographics Form -->
+          <div class="col-lg-6 ps-lg-5">
+            <div class="d-inline-flex align-items-center gap-2 text-primary fw-semibold small text-uppercase mb-2">
+              <i class="bi bi-person-lines-fill"></i> Step 3
+            </div>
+            <h3 class="fw-bold text-dark mb-3">Enter Patient Details</h3>
+            <p class="text-muted small mb-4">
+              Please provide the patient details to issue the medical token and generate your appointment slip.
+            </p>
+
+            <form id="appointmentBookingForm">
+              <div class="mb-3">
+                <label for="patientName" class="form-label fw-semibold text-dark">Patient Full Name <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light text-muted"><i class="bi bi-person"></i></span>
+                  <input type="text" class="form-control" id="patientName" placeholder="e.g. Rahul Sundaram" required>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="patientPhone" class="form-label fw-semibold text-dark">Contact Phone <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light text-muted">+91</span>
+                    <input type="tel" class="form-control" id="patientPhone" placeholder="9876543210" pattern="[0-9]{10}" maxlength="10" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="patientEmail" class="form-label fw-semibold text-dark">Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-envelope"></i></span>
+                    <input type="email" class="form-control" id="patientEmail" placeholder="patient@example.com">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-6">
+                  <label for="patientAge" class="form-label fw-semibold text-dark">Age <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="patientAge" placeholder="28" min="1" max="120" required>
+                </div>
+                <div class="col-6">
+                  <label for="patientGender" class="form-label fw-semibold text-dark">Gender <span class="text-danger">*</span></label>
+                  <select class="form-select" id="patientGender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-semibold shadow">
+                <i class="bi bi-check2-circle me-1"></i> Confirm Booking & Generate Token
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Live Hospital Queue & Appointments Table -->
+    <section id="queue-section" class="mb-5 pt-3">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-3">
+        <div>
+          <span class="text-primary fw-semibold small text-uppercase">Hospital Management</span>
+          <h2 class="fw-bold text-dark mb-1">Live Queue & Appointment Records</h2>
+          <p class="text-muted small mb-0">Real-time status tracking directly linked with <code>appointments.csv</code>.</p>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <div class="input-group" style="min-width: 260px;">
+            <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+            <input type="text" id="queueSearchInput" class="form-control border-start-0" placeholder="Search patient, phone, ID...">
+          </div>
+
+          <select id="queueStatusFilter" class="form-select" style="width: auto;">
+            <option value="ALL">All Statuses</option>
+            <option value="CONFIRMED">Confirmed</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="CANCELLED">Cancelled</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>Apt / Patient ID</th>
+              <th>Patient Info</th>
+              <th>Doctor & Dept</th>
+              <th>Time Slot & Room</th>
+              <th>Fee</th>
+              <th>Status</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsTableBody">
+            <!-- Populated by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Project & OOP Paradigm Information -->
+    <section id="about-section" class="mb-5 pt-3">
+      <div class="card border-0 bg-white rounded-4 shadow-sm p-4 p-lg-5">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle mb-2">SRM TRICHY • CSE AIML</span>
+            <h3 class="fw-bold text-dark mb-3">About the Doctor Appointment System</h3>
+            <p class="text-muted">
+              Developed as part of the <strong>Advanced Programming Practice (APP)</strong> course in Semester 3.
+              This system solves manual scheduling bottlenecks, long patient waiting lines, and scheduling conflicts
+              by modeling object-oriented healthcare business logic coupled with persistent storage.
+            </p>
+            <div class="row g-2 pt-2">
+              <div class="col-sm-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small"><i class="bi bi-cpu text-primary me-1"></i> Course</div>
+                  <div class="text-muted small">Semester 3 - APP (CSE AIML A)</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <div class="fw-bold text-dark small"><i class="bi bi-database-check text-success me-1"></i> Data Source</div>
+                  <div class="text-muted small">Synchronized <code>appointments.csv</code></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="p-4 bg-light rounded-4 border">
+              <h5 class="fw-bold text-dark mb-3"><i class="bi bi-people-fill text-primary me-2"></i>Project Team Members</h5>
+              <div class="list-group list-group-flush bg-transparent">
+                <div class="list-group-item bg-transparent px-0 py-2.5 d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="fw-bold text-dark">DB Dhanvanth</span>
+                    <span class="badge bg-secondary-subtle text-secondary ms-2">Member</span>
+                  </div>
+                  <span class="font-monospace text-primary fw-semibold small">RA2511026050032</span>
+                </div>
+                <div class="list-group-item bg-transparent px-0 py-2.5 d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="fw-bold text-dark">MV Mudapalli Vineel Kumar</span>
+                    <span class="badge bg-secondary-subtle text-secondary ms-2">Member</span>
+                  </div>
+                  <span class="font-monospace text-primary fw-semibold small">RA2511026050057</span>
+                </div>
+                <div class="list-group-item bg-transparent px-0 py-2.5 d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="fw-bold text-dark">Kabish Sridar</span>
+                    <span class="badge bg-secondary-subtle text-secondary ms-2">Member</span>
+                  </div>
+                  <span class="font-monospace text-primary fw-semibold small">RA2511026050018</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Printable Appointment Slip Modal -->
+  <div class="modal fade" id="printableSlipModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 bg-transparent">
+        <div class="modal-body p-0">
+          <div class="appointment-slip">
+            <!-- Slip Header -->
+            <div class="text-center pb-3 border-bottom mb-3">
+              <div class="d-inline-flex align-items-center gap-2 mb-1">
+                <i class="bi bi-hospital fs-4 text-primary"></i>
+                <h4 class="fw-bold text-dark mb-0">CarePoint Hospital</h4>
+              </div>
+              <p class="text-muted small mb-1">SRM TRICHY • Department of Computer Science & Engineering</p>
+              <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1">
+                <i class="bi bi-check-circle-fill me-1"></i> APPOINTMENT CONFIRMED
+              </span>
+            </div>
+
+            <!-- Token Box -->
+            <div class="text-center my-3">
+              <div class="token-badge" id="slipToken">TK-1001</div>
+              <div class="barcode-sim small mt-1" id="slipBarcode">*APT-1001*</div>
+            </div>
+
+            <!-- Details Table -->
+            <div class="small mb-3">
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Appointment ID:</span>
+                <span class="fw-bold font-monospace text-dark" id="slipAptId">APT-1001</span>
+              </div>
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Patient Name:</span>
+                <span class="fw-bold text-dark" id="slipPatName">Rahul Sundaram</span>
+              </div>
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Patient ID & Age:</span>
+                <span class="text-dark" id="slipPatAgeGender">28 yrs • Male</span>
+              </div>
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Phone Number:</span>
+                <span class="text-dark" id="slipPatPhone">9876543210</span>
+              </div>
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Consulting Doctor:</span>
+                <span class="fw-bold text-primary" id="slipDocName">Dr. Rajesh Sharma</span>
+              </div>
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Specialty Department:</span>
+                <span class="text-dark" id="slipDocDept">Cardiology</span>
+              </div>
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Scheduled Time & Date:</span>
+                <span class="fw-bold text-dark" id="slipSlotTime">10:30 AM (Today)</span>
+              </div>
+              <div class="d-flex justify-content-between py-1 border-bottom">
+                <span class="text-muted">Room / Location:</span>
+                <span class="text-dark" id="slipDocRoom">Room 201 (Block A)</span>
+              </div>
+              <div class="d-flex justify-content-between py-1">
+                <span class="text-muted">Consultation Fee:</span>
+                <span class="fw-bold text-success fs-6" id="slipDocFee">₹800</span>
+              </div>
+            </div>
+
+            <div class="text-center text-muted small pt-2 border-top">
+              <small>Booked At: <span id="slipBookedAt">Just now</span></small> <br>
+              <small class="fst-italic">Please present this slip at the reception 10 minutes before your slot.</small>
+            </div>
+
+            <!-- Actions inside Slip -->
+            <div class="d-flex gap-2 mt-4 no-print">
+              <button type="button" class="btn btn-outline-secondary w-50 rounded-pill" data-bs-dismiss="modal">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary w-50 rounded-pill" onclick="window.print()">
+                <i class="bi bi-printer-fill me-1"></i> Print Slip
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container text-center text-md-start">
+      <div class="row align-items-center g-3">
+        <div class="col-md-6">
+          <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+            <i class="bi bi-heart-pulse text-info fs-5"></i>
+            <span class="fw-bold">CarePoint Hospital • Doctor Appointment System</span>
+          </div>
+          <small class="text-white-50">SRM TRICHY • Department of Computer Science & Engineering (AI & ML)</small>
+        </div>
+        <div class="col-md-6 text-center text-md-end text-white-50 small">
+          Crafted with Bootstrap 5 • Two-Way CSV Data Persistence • Object-Oriented Architecture
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';"></script>
+
+  <!-- Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
+

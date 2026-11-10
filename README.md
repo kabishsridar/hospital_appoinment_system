@@ -31,8 +31,18 @@ The **Doctor Appointment System** provides a smart, reliable, and organized solu
 app_project/
 ├── build_and_run.bat       # DOS script: Compiles and starts the Java Swing GUI
 ├── run_cli.bat             # DOS script: Compiles and starts the interactive CLI
+├── run_web.bat             # DOS script: Starts web server and opens modern Bootstrap web UI
+├── server.py               # Python HTTP server synchronizing REST API with CSV
+├── package.json            # Node.js manifest with Bootstrap 5 dependencies
+├── web/                    # Modern Web Frontend
+│   ├── index.html          # Responsive Bootstrap 5 web app
+│   ├── css/
+│   │   └── styles.css      # Custom healthcare design system
+│   ├── js/
+│   │   └── app.js          # Interactive booking, slot picking & queue logic
+│   └── vendor/             # Offline Bootstrap 5 & Bootstrap Icons assets
 ├── data/
-│   └── appointments.csv    # Persistent file storage for appointments
+│   └── appointments.csv    # Persistent shared CSV storage for appointments
 ├── bin/                    # Compiled Java .class bytecode
 └── src/
     └── hospital/
@@ -75,7 +85,19 @@ app_project/
 
 ## 🚀 How to Run
 
-### Option 1: Modern Desktop GUI (Recommended)
+### Option 1: Modern Web Portal (Bootstrap 5)
+Double-click [run_web.bat](run_web.bat) or run in the terminal:
+```cmd
+cd d:\srm_university\semester_3\APP\app_project
+run_web.bat
+```
+*(Or directly with Python)*:
+```cmd
+python server.py 8000
+```
+Then open `http://localhost:8000/web/index.html` in your browser. (The portal can also be opened offline by double-clicking `web/index.html`).
+
+### Option 2: Modern Desktop GUI (Java Swing)
 Double-click [build_and_run.bat](build_and_run.bat) or run in the terminal:
 ```cmd
 cd d:\srm_university\semester_3\APP\app_project
